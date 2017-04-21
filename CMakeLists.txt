@@ -1,6 +1,8 @@
 project(sig11)
 cmake_minimum_required(VERSION 3.0)
 
+option(BUILD_TESTS "build tests" OFF)
+
 set(SIG11_SRCS
    src/sig11.cpp
 )
@@ -18,6 +20,7 @@ target_compile_options(sig11 PRIVATE $<$<CONFIG:DEBUG>:-ggdb -O2>)
 target_compile_options(sig11 PRIVATE $<$<CONFIG:RELEASE>:-O3>)
 target_include_directories(sig11 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+IF(BUILD_TESTS)
 add_custom_target(dummy_sig11_files SOURCES ${SIG11_HEADERS})
 
 set(SIG11_TEST_SRCS
@@ -35,3 +38,5 @@ set_property(TARGET sig11_tests PROPERTY CXX_STANDARD_REQUIRED ON)
 target_compile_options(sig11_tests PRIVATE -Wall -Wextra)
 target_compile_options(sig11_tests PRIVATE $<$<CONFIG:DEBUG>:-ggdb -O2>)
 target_compile_options(sig11_tests PRIVATE $<$<CONFIG:RELEASE>:-O3>)
+
+ENDIF(BUILD_TESTS)
