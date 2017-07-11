@@ -1,2 +1,0 @@
-/usr/bin/ar qc libsig11.a  CMakeFiles/sig11.dir/src/sig11.cpp.o
-/usr/bin/ranlib libsig11.a
